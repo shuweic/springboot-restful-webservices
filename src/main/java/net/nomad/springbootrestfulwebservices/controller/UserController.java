@@ -1,7 +1,7 @@
 package net.nomad.springbootrestfulwebservices.controller;
 
 import lombok.AllArgsConstructor;
-import net.nomad.springbootrestfulwebservices.entity.User;
+import net.nomad.springbootrestfulwebservices.dto.UserDto;
 import net.nomad.springbootrestfulwebservices.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,33 +20,33 @@ public class UserController {
 
     // create User REST API
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        User savedUser = userService.createUser(user);
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto user) {
+        UserDto savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     // http://localhost:8080/api/users/1
     // get User by Id REST API
     @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
-        User user = userService.getUserById(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<UserDto> getUserById(@PathVariable("id") Long userId) {
+        UserDto userDto = userService.getUserById(userId);
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     // http://localhost:8080/api/users
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUser();
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<UserDto> users = userService.getAllUser();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
     // http://localhost:8080/api/users/1
     @PutMapping("{id}")
-    public ResponseEntity<User> updateUserById(@PathVariable("id") Long userId,
-                                               @RequestBody User user) {
+    public ResponseEntity<UserDto> updateUserById(@PathVariable("id") Long userId,
+                                               @RequestBody UserDto user) {
         user.setId(userId);
-        User updatedUser = userService.updateUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        UserDto updatedUser = userService.updateUser(user);
+        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")

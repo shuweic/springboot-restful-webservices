@@ -1,17 +1,17 @@
 package net.nomad.springbootrestfulwebservices.service;
 
-import net.nomad.springbootrestfulwebservices.entity.User;
+import net.nomad.springbootrestfulwebservices.dto.UserDto;
 
 import java.util.List;
 
 public interface UserService {
-    User createUser(User user);
+    UserDto createUser(UserDto user);
 
-    User getUserById(Long userId);
+    UserDto getUserById(Long userId);
 
-    List<User> getAllUser();
+    List<UserDto> getAllUser();
 
-    User updateUser(User user);
+    UserDto updateUser(UserDto user);
 
     void deleteUser(Long userId);
 }
